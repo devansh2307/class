@@ -1,0 +1,23 @@
+1)
+SELECT name,address FROM `bigquery-public-data.austin_bikeshare.bikeshare_stations`
+where status = "active"
+
+2)
+SELECT Count(country_name) FROM `bigquery-public-data.country_codes.country_codes`
+where alpha_2_code like '%A' 
+
+3) SELECT state_name, county_name, total_hospital_beds FROM `bigquery-public-data.covid19_aha.hospital_beds` 
+where total_hospital_beds >= 500
+Order by state_name ASC
+LIMIT 1000
+
+4) SELECT * FROM `bigquery-public-data.covid19_aha.hospital_beds` x
+Inner Join `bigquery-public-data.covid19_aha.staffing` y on x.county_fips_code= y.county_fips_code 
+where y.state_name like 'M%' and x.total_hospital_beds >=500
+
+5)
+SELECT state_name, sum(total_hospital_beds) as total_beds FROM `bigquery-public-data.covid19_aha.hospital_beds`
+group by state_name
+having total_beds >500 
+order by total_beds asc
+LIMIT 1000
