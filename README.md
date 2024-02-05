@@ -47,7 +47,7 @@ LIMIT 1000
 
 https://drive.google.com/file/d/16M0DNDdjMyt9MIX4o4LBsVS29pcsnFEC/view?usp=sharing
 
-6)
+6) How many robberies happened between 2019 and 2023?
 SELECT year,primary_type, count(*) 
 FROM `bigquery-public-data.chicago_crime.crime` 
 where primary_type= 'ROBBERY'and year BETWEEN 2019 AND 2023
@@ -55,7 +55,7 @@ group by year, primary_type
 
 https://drive.google.com/file/d/1DSgPh0XwxQP0oAO5Zk9Q7R6EaLjL-Mwt/view?usp=sharing
 
-7
+7 List out the number of times different types of crimes committed in descending order.
 SELECT primary_type, count(*) AS frequency 
 FROM `bigquery-public-data.chicago_crime.crime` 
 group by primary_type
@@ -63,7 +63,7 @@ Order by frequency desc
 
 https://drive.google.com/file/d/1pj47Z9xnfn0SKG_sijPYFLurGGSaP6Dl/view?usp=sharing
 
-8
+8 Find the total hospital beds and total nurses statewise.
 SELECT y.state_name, sum(x.total_hospital_beds) as total_beds,sum(y.total_nursing_home_personnel_ft) as total_nurses 
 FROM `bigquery-public-data.covid19_aha.hospital_beds` x
 Right Join `bigquery-public-data.covid19_aha.staffing` y 
@@ -73,7 +73,7 @@ order by total_beds Desc, total_nurses desc
 
 https://drive.google.com/file/d/1edC18Rj6E_L_U_6MkJM4Yrk1V-N0puZ6/view?usp=sharing
 
-9)
+9) Find the missing data for hospital beds and total personnels in hospitals.
 SELECT x.state_name, x.total_hospital_beds, y.total_personnel_ft
 FROM `bigquery-public-data.covid19_aha.hospital_beds` x
 Right Join `bigquery-public-data.covid19_aha.staffing` y on x.county_fips_code= y.county_fips_code 
@@ -81,7 +81,8 @@ WHERE x.total_hospital_beds IS NULL OR y.total_personnel_ft IS NULL
 
 https://drive.google.com/file/d/1iNff9dx7k9pUM1aCX-DbzXPAKLosQ-UZ/view?usp=sharing
 
-10) SELECT state_name,avg(num_airborne_infection_isolation_rooms) as airborne 
+10) Find the average number of infection rooms statewise.
+SELECT state_name,avg(num_airborne_infection_isolation_rooms) as airborne 
 FROM `bigquery-public-data.covid19_aha.hospital_beds` 
 group by state_name
 
